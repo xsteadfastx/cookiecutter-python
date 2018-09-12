@@ -1,0 +1,8 @@
+{
+  "python_version": "3.7",
+  "project_name": "my_python_project",
+  "author_name": "Don Draper",
+  "author_email": "draper@sterling-cooper-draper-pryce.tld",
+  "project_short_description": "here is a short description",
+  "version": "0.0.0"
+}

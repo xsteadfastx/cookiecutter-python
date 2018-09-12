@@ -1,0 +1,11 @@
+language: python
+env:
+  - TOXENV=py36
+  - TOXENV=py37
+  - TOXENV=flake8
+  - TOXENV=pylint
+  - TOXENV=mypy
+install:
+  - travis_retry pip install tox
+script:
+  - pipenv run tox -v -e $TOXENV
