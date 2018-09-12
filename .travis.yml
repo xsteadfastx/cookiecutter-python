@@ -11,8 +11,6 @@ matrix:
     env: TOXENV=flake8
   - python: '3.6'
     env: TOXENV=pylint
-  - python: '3.6'
-    env: TOXENV=mypy
 install:
   - travis_retry pip install pipenv
 script:
