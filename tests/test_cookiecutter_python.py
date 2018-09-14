@@ -28,3 +28,18 @@ def test_hook_git(created_project):
 
     assert "name = Don Draper" in config
     assert "email = draper@sterling-cooper-draper-pryce.tld" in config
+
+
+def test_travis(created_project):
+    with open(created_project.joinpath(".travis.yml")) as f:
+        travis_yml = f.read()
+
+    assert "TOXENV=py36" in travis_yml
+    assert "TOXENV=py37" in travis_yml
+    assert "TOXENV=flake8" in travis_yml
+    assert "TOXENV=pylint" in travis_yml
+    assert "docker build --no-cache -t tox-python -f Dockerfile.tests ." in travis_yml
+    assert (
+        "docker run --rm -t -v $PWD:/data -w /data "
+        "-e USER_ID=$UID -e GROUP_ID=$UID tox-python tox -v -e $TOXENV"
+    ) in travis_yml

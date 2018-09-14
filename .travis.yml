@@ -1,18 +1,13 @@
+sudo: required
 language: python
-matrix:
-  include:
-  - python: '3.6'
-    env: TOXENV=py36
-  - python: '3.7'
-    env: TOXENV=py37
-    dist: xenial
-    sudo: true
-  - python: '3.6'
-    env: TOXENV=flake8
-  - python: '3.6'
-    env: TOXENV=pylint
-install:
-  - travis_retry pip install pipenv
+services:
+  - docker
+env:
+  - TOXENV=py36
+  - TOXENV=py37
+  - TOXENV=flake8
+  - TOXENV=pylint
+before_install:
+  - docker build --no-cache -t tox-python -f Dockerfile.tests .
 script:
-  - pipenv install --dev
-  - pipenv run tox -v -e $TOXENV
+  - docker run --rm -t -v $PWD:/data -w /data -e USER_ID=$UID -e GROUP_ID=$UID tox-python tox -v -e $TOXENV
