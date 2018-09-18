@@ -1,4 +1,4 @@
-.PHONY: init test
+.PHONY: all clean init test
 
 init:
 	git init
