@@ -23,4 +23,11 @@ setup(
     package_dir={"": "src"},
     package_data={},
     include_package_data=True,
+    install_requires=[
+        "Click",
+    ],
+    entry_points="""
+        [console_scripts]
+        {{ cookiecutter.project_name }}={{ cookiecutter.project_name }}.cli:main
+    """
 )
