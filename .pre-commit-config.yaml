@@ -16,3 +16,7 @@ repos:
     hooks:
       - id: detect-secrets
         exclude: Pipfile*
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-go
+    rev: v1.0.0
+    hooks:
+      - id: checkmake

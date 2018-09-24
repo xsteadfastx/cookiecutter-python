@@ -11,6 +11,7 @@ pipeline {
                                 sh 'tox -e py37'
                                 sh 'tox -e flake8'
                                 sh 'tox -e pylint'
+                                sh 'tox -e cookiecutter'
                         }
                 }
         }
