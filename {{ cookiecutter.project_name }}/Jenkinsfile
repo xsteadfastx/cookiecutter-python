@@ -15,5 +15,21 @@ pipeline {
                                 sh 'tox -e mypy'
                         }
                 }
+                stage('Coverage') {
+                        steps {
+                                sh 'tox -e coverage'
+                                publishHTML(
+                                        [
+                                                allowMissing: false,
+                                                alwaysLinkToLastBuild: false,
+                                                keepAll: false,
+                                                reportDir: 'htmlcov',
+                                                reportFiles: 'index.html',
+                                                reportName: 'HTML Report',
+                                                reportTitles: ''
+                                        ]
+                                )
+                        }
+                }
         }
 }
