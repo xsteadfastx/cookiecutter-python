@@ -9,7 +9,6 @@ cook_test:
 cook_testing:
 	mkdir $(TMPDIR)
 	cookiecutter --no-input -o $(TMPDIR) .
-	cd $(TMPDIR)/my_python_project
 	make -C $(TMPDIR)/my_python_project init
 	make -C $(TMPDIR)/my_python_project test
 	rm -rf $(TMPDIR)
