@@ -41,5 +41,5 @@ def test_travis(created_project):
     assert "docker build --no-cache -t tox-python -f Dockerfile.tests ." in travis_yml
     assert (
         "docker run --rm -t -v $PWD:/data -w /data "
-        "-e USER_ID=$UID -e GROUP_ID=$UID tox-python tox -v -e $TOXENV"
+        "tox-python tox -v -e $TOXENV"
     ) in travis_yml

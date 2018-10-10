@@ -11,4 +11,4 @@ env:
 before_install:
   - docker build --no-cache -t tox-python -f Dockerfile.tests .
 script:
-  - docker run --rm -t -v $PWD:/data -w /data -e USER_ID=$UID -e GROUP_ID=$UID tox-python tox -v -e $TOXENV
+  - docker run --rm -t -v $PWD:/data -w /data tox-python tox -v -e $TOXENV
