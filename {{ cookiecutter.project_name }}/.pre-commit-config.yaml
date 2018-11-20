@@ -22,16 +22,6 @@ repos:
       - id: debug-statements
   - repo: local
     hooks:
-      - id: py36
-        name: py36
-        language: system
-        entry: pipenv run tox -r -e py36
-        types: [python]
-      - id: py37
-        name: py37
-        language: system
-        entry: pipenv run tox -r -e py37
-        types: [python]
       - id: flake8
         name: flake8
         language: system
