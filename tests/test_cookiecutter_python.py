@@ -38,8 +38,11 @@ def test_travis(created_project):
     assert "TOXENV=py37" in travis_yml
     assert "TOXENV=flake8" in travis_yml
     assert "TOXENV=pylint" in travis_yml
-    assert "docker build --no-cache -t tox-python -f Dockerfile.tests ." in travis_yml
+    assert (
+        "docker build --no-cache -t my_python_project-tests "
+        "-f Dockerfile.tests ."
+    ) in travis_yml
     assert (
         "docker run --rm -t -v $PWD:/data -w /data "
-        "tox-python tox -v -e $TOXENV"
+        "my_python_project-tests tox -v -e $TOXENV"
     ) in travis_yml

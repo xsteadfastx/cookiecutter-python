@@ -9,7 +9,7 @@ env:
   - TOXENV=pylint
   - TOXENV=mypy
 before_install:
-  - docker build --no-cache -t tox-python -f Dockerfile.tests .
+  - docker build --no-cache -t {{ cookiecutter.project_name }}-tests -f Dockerfile.tests .
 script:
   - sudo chown -Rv 1000:1000 $PWD
-  - docker run --rm -t -v $PWD:/data -w /data tox-python tox -v -e $TOXENV
+  - docker run --rm -t -v $PWD:/data -w /data {{ cookiecutter.project_name }}-tests tox -v -e $TOXENV
