@@ -4,6 +4,9 @@ pipeline {
                         filename 'Dockerfile.tests'
                 }
         }
+        environment {
+                TOX_WORK_DIR = '/tmp'
+        }
         stages {
                 stage('Test') {
                         steps {

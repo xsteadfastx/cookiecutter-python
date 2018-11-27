@@ -12,4 +12,4 @@ before_install:
   - docker build --no-cache -t cookiecutter-python-tests -f Dockerfile.tests .
 script:
   - sudo chown -Rv 1000:1000 $PWD
-  - docker run --rm -t -v $PWD:/data -w /data cookiecutter-python-tests tox -v -e $TOXENV
+  - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp cookiecutter-python-tests tox -v -e $TOXENV
