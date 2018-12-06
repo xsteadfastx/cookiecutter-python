@@ -8,6 +8,7 @@ env:
   - TOXENV=flake8
   - TOXENV=pylint
   - TOXENV=mypy
+  - TOXENV=black-only-check
 before_install:
   - docker build --no-cache -t {{ cookiecutter.project_name }}-tests -f Dockerfile.tests .
 script:

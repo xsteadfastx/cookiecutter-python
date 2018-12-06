@@ -15,6 +15,7 @@ pipeline {
                                 sh 'tox -e flake8'
                                 sh 'tox -e pylint'
                                 sh 'tox -e mypy'
+                                sh 'tox -e black-only-check'
                         }
                 }
                 stage('Coverage') {

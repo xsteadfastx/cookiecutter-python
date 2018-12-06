@@ -1,0 +1,52 @@
+kind: pipeline
+name: default
+
+steps:
+
+  - name: build test image
+    image: docker:latest
+    volumes:
+      - name: docker_sock
+        path: /var/run/docker.sock
+    commands:
+      - docker build --no-cache -t {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT} -f Dockerfile.tests .
+
+  - name: py36
+    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    environment:
+      TOX_WORK_DIR: /tmp/tox
+    commands:
+      - tox -e py36
+
+  - name: py37
+    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    environment:
+      TOX_WORK_DIR: /tmp/tox
+    commands:
+      - tox -e py37
+
+  - name: flake8
+    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    environment:
+      TOX_WORK_DIR: /tmp/tox
+    commands:
+      - tox -e flake8
+
+  - name: pylint
+    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    environment:
+      TOX_WORK_DIR: /tmp/tox
+    commands:
+      - tox -e pylint
+
+  - name: black
+    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    environment:
+      TOX_WORK_DIR: /tmp/tox
+    commands:
+      - tox -e black-only-check
+
+volumes:
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock
