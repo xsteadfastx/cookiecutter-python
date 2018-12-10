@@ -3,8 +3,7 @@ language: python
 services:
   - docker
 env:
-  - TOXENV=py36
-  - TOXENV=py37
+  - TOXENV=py{{ cookiecutter.python_version|replace(".", "") }}
   - TOXENV=flake8
   - TOXENV=pylint
   - TOXENV=mypy
@@ -12,4 +11,4 @@ env:
 before_install:
   - docker build --no-cache -t {{ cookiecutter.project_name }}-tests -f Dockerfile.tests .
 script:
-  - docker run --rm -t -v $PWD:/data -w /data {{ cookiecutter.project_name }}-tests -e TOX_WORK_DIR=/tmp tox -v -e $TOXENV
+  - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp {{ cookiecutter.project_name }}-tests tox -v -e $TOXENV

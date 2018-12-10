@@ -10,8 +10,7 @@ pipeline {
         stages {
                 stage('Test') {
                         steps {
-                                sh 'tox -e py36'
-                                sh 'tox -e py37'
+                                sh 'tox -e py{{ cookiecutter.python_version|replace(".", "") }}'
                                 sh 'tox -e flake8'
                                 sh 'tox -e pylint'
                                 sh 'tox -e mypy'

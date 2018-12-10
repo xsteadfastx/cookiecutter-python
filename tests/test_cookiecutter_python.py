@@ -18,8 +18,8 @@ def test_tox(created_project):
     with open(created_project.joinpath("tox.ini")) as f:
         tox_ini = f.read()
 
-    assert "pipenv run coverage run --source=my_python_project -m pytest" in tox_ini
-    assert "pipenv run flake8 {toxinidir}/src/my_python_project/" in tox_ini
+    assert "poetry run coverage run --source=my_python_project -m pytest" in tox_ini
+    assert "poetry run flake8 {toxinidir}/src/my_python_project/" in tox_ini
 
 
 def test_hook_git(created_project):
@@ -34,14 +34,16 @@ def test_travis(created_project):
     with open(created_project.joinpath(".travis.yml")) as f:
         travis_yml = f.read()
 
-    assert "TOXENV=py36" in travis_yml
-    assert "TOXENV=py37" in travis_yml
+    assert "TOXENV=py" in travis_yml
     assert "TOXENV=flake8" in travis_yml
     assert "TOXENV=pylint" in travis_yml
+    assert "TOXENV=mypy" in travis_yml
+    assert "TOXENV=black-only-check" in travis_yml
     assert (
         "docker build --no-cache -t my_python_project-tests " "-f Dockerfile.tests ."
     ) in travis_yml
     assert (
         "docker run --rm -t -v $PWD:/data -w /data "
-        "my_python_project-tests -e TOX_WORK_DIR=/tmp tox -v -e $TOXENV"
+        "-e TOX_WORK_DIR=/tmp "
+        "my_python_project-tests tox -v -e $TOXENV"
     ) in travis_yml

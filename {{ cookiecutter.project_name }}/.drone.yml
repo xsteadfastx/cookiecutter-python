@@ -11,19 +11,12 @@ steps:
     commands:
       - docker build --no-cache -t {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT} -f Dockerfile.tests .
 
-  - name: py36
+  - name: py{{ cookiecutter.python_version|replace(".", "") }}
     image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - tox -e py36
-
-  - name: py37
-    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
-    environment:
-      TOX_WORK_DIR: /tmp/tox
-    commands:
-      - tox -e py37
+      - tox -e py{{ cookiecutter.python_version|replace(".", "") }}
 
   - name: flake8
     image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}

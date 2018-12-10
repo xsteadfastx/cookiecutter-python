@@ -1,8 +1,7 @@
 .PHONY: all clean init test
 
 init:
-	pipenv lock
-	pipenv install --dev
+	poetry install
 
 test:
-	pipenv run tox
+	poetry run tox

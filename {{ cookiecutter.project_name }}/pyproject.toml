@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_short_description }}"
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^{{ cookiecutter.python_version }}"
+click = "*"
+
+[tool.poetry.dev-dependencies]
+mypy = "*"
+flake8 = "*"
+pylint = "*"
+tox = "*"
+pytest = "*"
+
+[tool.poetry.scripts]
+{{ cookiecutter.project_name }} = "{{ cookiecutter.project_name }}.cli:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
