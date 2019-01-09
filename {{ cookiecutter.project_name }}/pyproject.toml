@@ -15,6 +15,7 @@ flake8 = "*"
 pylint = "*"
 tox = "*"
 pytest = "*"
+coverage = "*"
 
 [tool.poetry.scripts]
 {{ cookiecutter.project_name }} = "{{ cookiecutter.project_name }}.cli:main"
