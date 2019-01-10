@@ -16,6 +16,8 @@ pylint = "*"
 tox = "*"
 pytest = "*"
 coverage = "*"
+isort = "*"
+black = "=18.9b0"
 
 [tool.poetry.scripts]
 {{ cookiecutter.project_name }} = "{{ cookiecutter.project_name }}.cli:main"
