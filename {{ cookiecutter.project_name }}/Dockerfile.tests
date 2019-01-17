@@ -1,1 +1,5 @@
 FROM xsteadfastx/tox-python
+
+RUN set -ex \
+ && pip3.7 install poetry \
+ && pyenv rehash
