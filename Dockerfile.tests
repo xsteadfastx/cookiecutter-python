@@ -1,1 +1,12 @@
 FROM xsteadfastx/tox-python
+
+USER root
+
+RUN set -ex \
+ && apt-get update \
+ && apt-get install -y \
+        git \
+        make \
+ && rm -rf /var/lib/apt/lists/*
+
+USER tox
