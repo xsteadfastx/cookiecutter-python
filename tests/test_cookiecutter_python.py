@@ -40,7 +40,7 @@ def test_travis(created_project):
     assert "TOXENV=mypy" in travis_yml
     assert "TOXENV=black-only-check" in travis_yml
     assert (
-        "docker build --no-cache -t my_python_project-tests " "-f Dockerfile.tests ."
+        "docker build -t my_python_project-tests " "-f Dockerfile.tests ."
     ) in travis_yml
     assert (
         "docker run --rm -t -v $PWD:/data -w /data "
