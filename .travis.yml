@@ -9,6 +9,6 @@ env:
   - TOXENV=pylint
   - TOXENV=cookiecutter
 before_install:
-  - docker build --no-cache -t cookiecutter-python-tests -f Dockerfile.tests .
+  - docker build -t cookiecutter-python-tests -f Dockerfile.tests .
 script:
   - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp cookiecutter-python-tests tox -v -e $TOXENV

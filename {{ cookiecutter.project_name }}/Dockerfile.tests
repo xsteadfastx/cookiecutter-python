@@ -3,3 +3,14 @@ FROM xsteadfastx/tox-python
 RUN set -ex \
  && pip3.7 install poetry \
  && pyenv rehash
+
+USER root
+
+RUN set -ex \
+ && apt-get update \
+ && apt-get install -y \
+        git \
+        libsqlite3-0 \
+ && rm -rf /var/lib/apt/lists/*
+
+USER tox

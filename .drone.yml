@@ -9,7 +9,7 @@ steps:
       - name: docker_sock
         path: /var/run/docker.sock
     commands:
-      - docker build --no-cache -t cookiecutter-python-tests:${DRONE_COMMIT} -f Dockerfile.tests .
+      - docker build -t cookiecutter-python-tests:${DRONE_COMMIT} -f Dockerfile.tests .
 
   - name: py36
     image: cookiecutter-python-tests:${DRONE_COMMIT}

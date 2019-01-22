@@ -9,7 +9,12 @@ steps:
       - name: docker_sock
         path: /var/run/docker.sock
     commands:
-      - docker build --no-cache -t {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT} -f Dockerfile.tests .
+      - docker build -t {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT} -f Dockerfile.tests .
+
+  - name: set permissions
+    image: alpine:edge
+    commands:
+      - chown -Rv 1000:1000 .
 
   - name: py{{ cookiecutter.python_version|replace(".", "") }}
     image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
