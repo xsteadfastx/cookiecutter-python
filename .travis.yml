@@ -11,4 +11,5 @@ env:
 before_install:
   - docker build -t cookiecutter-python-tests -f Dockerfile.tests .
 script:
+  - sudo chown -R 1000:1000 .
   - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp cookiecutter-python-tests tox -v -e $TOXENV

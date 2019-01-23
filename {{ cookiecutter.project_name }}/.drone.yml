@@ -37,6 +37,13 @@ steps:
     commands:
       - tox -e pylint
 
+  - name: mypy
+    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    environment:
+      TOX_WORK_DIR: /tmp/tox
+    commands:
+      - tox -e mypy
+
   - name: black
     image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
     environment:
