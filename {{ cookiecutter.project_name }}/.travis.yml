@@ -13,3 +13,20 @@ before_install:
 script:
   - sudo chown -R 1000:1000 .
   - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp {{ cookiecutter.project_name }}-tests tox -v -e $TOXENV
+  - >
+    docker run --rm -t
+    -v $PWD:/data
+    -w /data
+    -e TOX_WORK_DIR=/tmp
+    -e CI
+    -e TRAVIS
+    -e SHIPPABLE
+    -e TRAVIS_BRANCH
+    -e TRAVIS_COMMIT
+    -e TRAVIS_JOB_NUMBER
+    -e TRAVIS_PULL_REQUEST
+    -e TRAVIS_JOB_ID
+    -e TRAVIS_REPO_SLUG
+    -e TRAVIS_TAG
+    -e TRAVIS_OS_NAME
+    {{ cookiecutter.project_name }} tox -v -e $TOXENV

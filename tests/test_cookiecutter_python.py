@@ -18,7 +18,8 @@ def test_tox(created_project):
     with open(created_project.joinpath("tox.ini")) as f:
         tox_ini = f.read()
 
-    assert "poetry run coverage run --source=my_python_project -m pytest" in tox_ini
+    assert "poetry run pytest --cov=my_python_project" in tox_ini
+    assert "poetry run codecov" in tox_ini
     assert "poetry run flake8 {toxinidir}/src/my_python_project/" in tox_ini
 
 
