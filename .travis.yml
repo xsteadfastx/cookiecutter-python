@@ -3,7 +3,6 @@ language: python
 services:
   - docker
 env:
-  - TOXENV=py36
   - TOXENV=py37
   - TOXENV=flake8
   - TOXENV=pylint

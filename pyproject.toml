@@ -6,7 +6,7 @@ authors = ["Marvin Steadfast <marvin@xsteadfastx.org>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 cookiecutter = "^1.6"
 
 [tool.poetry.dev-dependencies]
