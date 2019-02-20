@@ -7,18 +7,6 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
-click = "*"
-
-[tool.poetry.dev-dependencies]
-mypy = "*"
-flake8 = "*"
-pylint = "*"
-tox = "*"
-pytest = "*"
-pytest-cov = "*"
-codecov = "*"
-isort = "*"
-black = "=18.9b0"
 
 [tool.poetry.scripts]
 {{ cookiecutter.project_name }} = "{{ cookiecutter.project_name }}.cli:main"
