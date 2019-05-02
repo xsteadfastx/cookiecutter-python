@@ -8,8 +8,6 @@ env:
   - TOXENV=pylint
   - TOXENV=mypy
   - TOXENV=black-only-check
-before_install:
-  - docker build -t {{ cookiecutter.project_name }}-tests -f Dockerfile.tests .
 script:
   - sudo chown -R 1000:1000 .
   - >
@@ -28,4 +26,4 @@ script:
     -e TRAVIS_REPO_SLUG
     -e TRAVIS_TAG
     -e TRAVIS_OS_NAME
-    {{ cookiecutter.project_name }}-tests tox -v -e $TOXENV
+    xsteadfastx/tox-python:minimal /bin/sh -c "sudo apk add --no-cache gcc musl-dev; tox -v -e $TOXENV"

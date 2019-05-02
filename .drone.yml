@@ -3,57 +3,42 @@ name: default
 
 steps:
 
-  - name: build test image
-    image: docker:latest
-    volumes:
-      - name: docker_sock
-        path: /var/run/docker.sock
-    commands:
-      - docker build -t cookiecutter-python-tests:${DRONE_COMMIT} -f Dockerfile.tests .
-
-  - name: py36
-    image: cookiecutter-python-tests:${DRONE_COMMIT}
-    environment:
-      TOX_WORK_DIR: /tmp/tox
-    commands:
-      - tox -e py36
-
   - name: py37
-    image: cookiecutter-python-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
+      - sudo apk add --no-cache gcc musl-dev
       - tox -e py37
 
   - name: flake8
-    image: cookiecutter-python-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
+      - sudo apk add --no-cache gcc musl-dev
       - tox -e flake8
 
   - name: pylint
-    image: cookiecutter-python-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
+      - sudo apk add --no-cache gcc musl-dev
       - tox -e pylint
 
   - name: black
-    image: cookiecutter-python-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
+      - sudo apk add --no-cache gcc musl-dev
       - tox -e black-only-check
 
   - name: cookiecutter
-    image: cookiecutter-python-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
+      - sudo apk add --no-cache git gcc make musl-dev
       - tox -e cookiecutter
-
-volumes:
-  - name: docker_sock
-    host:
-      path: /var/run/docker.sock

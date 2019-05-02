@@ -18,13 +18,9 @@ RETURN_CODES.append(
 )
 
 # install deps through poetry
-DEPS = [
-    "click"
-]
+DEPS = ["click"]
 
-RETURN_CODES.append(
-    subprocess.run(["poetry", "add"] + DEPS).returncode
-)
+RETURN_CODES.append(subprocess.run(["poetry", "add"] + DEPS).returncode)
 
 DEV_DEPS = [
     "black==18.9b0",
@@ -38,9 +34,7 @@ DEV_DEPS = [
     "tox",
 ]
 
-RETURN_CODES.append(
-    subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS).returncode
-)
+RETURN_CODES.append(subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS).returncode)
 
 if any(RETURN_CODES):
     sys.exit(1)

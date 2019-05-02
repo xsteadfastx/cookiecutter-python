@@ -1,7 +1,7 @@
 pipeline {
         agent {
-                dockerfile {
-                        filename 'Dockerfile.tests'
+                docker {
+                        image 'xsteadfastx/tox-python:minimal'
                 }
         }
         environment {
@@ -10,11 +10,12 @@ pipeline {
         stages {
                 stage('Test') {
                         steps {
-                                sh 'tox -e py{{ cookiecutter.python_version|replace(".", "") }}'
-                                sh 'tox -e flake8'
-                                sh 'tox -e pylint'
-                                sh 'tox -e mypy'
-                                sh 'tox -e black-only-check'
+                                sh 'sudo apk add --no-cache gcc musl-dev'
+                                sh 'tox -v -e py{{ cookiecutter.python_version|replace(".", "") }}'
+                                sh 'tox -v -e flake8'
+                                sh 'tox -v -e pylint'
+                                sh 'tox -v -e mypy'
+                                sh 'tox -v -e black-only-check'
                         }
                 }
                 stage('Coverage') {

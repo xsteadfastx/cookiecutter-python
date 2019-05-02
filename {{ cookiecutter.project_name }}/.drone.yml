@@ -3,55 +3,52 @@ name: default
 
 steps:
 
-  - name: build test image
-    image: docker:latest
-    volumes:
-      - name: docker_sock
-        path: /var/run/docker.sock
-    commands:
-      - docker build -t {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT} -f Dockerfile.tests .
-
   - name: set permissions
     image: alpine:edge
     commands:
       - chown -Rv 1000:1000 .
 
   - name: py{{ cookiecutter.python_version|replace(".", "") }}
-    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
+    pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - tox -e py{{ cookiecutter.python_version|replace(".", "") }}
+      - sudo apk add --no-cache gcc musl-dev
+      - tox -v -e py{{ cookiecutter.python_version|replace(".", "") }}
 
   - name: flake8
-    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
+    pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - tox -e flake8
+      - sudo apk add --no-cache gcc musl-dev
+      - tox -v -e flake8
 
   - name: pylint
-    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
+    pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - tox -e pylint
+      - sudo apk add --no-cache gcc musl-dev
+      - tox -v -e pylint
 
   - name: mypy
-    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
+    pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - tox -e mypy
+      - sudo apk add --no-cache gcc musl-dev
+      - tox -v -e mypy
 
   - name: black
-    image: {{ cookiecutter.project_name}}-tests:${DRONE_COMMIT}
+    image: xsteadfastx/tox-python:minimal
+    pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - tox -e black-only-check
-
-volumes:
-  - name: docker_sock
-    host:
-      path: /var/run/docker.sock
+      - sudo apk add --no-cache gcc musl-dev
+      - tox -v -e black-only-check

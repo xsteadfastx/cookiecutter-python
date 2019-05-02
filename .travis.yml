@@ -6,9 +6,11 @@ env:
   - TOXENV=py37
   - TOXENV=flake8
   - TOXENV=pylint
+  - TOXENV=black-only-check
   - TOXENV=cookiecutter
 before_install:
-  - docker build -t cookiecutter-python-tests -f Dockerfile.tests .
+  - docker rmi xsteadfastx/tox-python:minimal
+  - docker pull xsteadfastx/tox-python:minimal
 script:
   - sudo chown -R 1000:1000 .
-  - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp cookiecutter-python-tests tox -v -e $TOXENV
+  - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp xsteadfastx/tox-python:minimal /bin/sh -c "sudo apk add --no-cache git make; tox -v -e $TOXENV"

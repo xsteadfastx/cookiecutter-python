@@ -40,9 +40,6 @@ def test_travis(created_project):
     assert "TOXENV=pylint" in travis_yml
     assert "TOXENV=mypy" in travis_yml
     assert "TOXENV=black-only-check" in travis_yml
-    assert (
-        "docker build -t my_python_project-tests " "-f Dockerfile.tests ."
-    ) in travis_yml
     assert "docker run --rm -t" in travis_yml
     assert "-v $PWD:/data" in travis_yml
     assert "-w /data" in travis_yml
@@ -58,4 +55,7 @@ def test_travis(created_project):
     assert "-e TRAVIS_REPO_SLUG" in travis_yml
     assert "-e TRAVIS_TAG" in travis_yml
     assert "-e TRAVIS_OS_NAME" in travis_yml
-    assert "my_python_project-tests tox -v -e $TOXENV" in travis_yml
+    assert (
+        "xsteadfastx/tox-python:minimal /bin/sh -c "
+        '"sudo apk add --no-cache gcc musl-dev; tox -v -e $TOXENV"'
+    ) in travis_yml
