@@ -1,5 +1,7 @@
 # cookiecutter-python
 
+[![Build Status](https://cloud.drone.io/api/badges/xsteadfastx/cookiecutter-python/status.svg)](https://cloud.drone.io/xsteadfastx/cookiecutter-python)
+
 An easy start to get a Python project up and running. Things covered:
 
 - [x] Dockerfile
@@ -12,3 +14,5 @@ An easy start to get a Python project up and running. Things covered:
 - [x] pylint
 - [x] pytest
 - [x] travis
+- [x] drone
+- [x] sphinx docs
