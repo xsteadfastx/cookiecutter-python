@@ -1,4 +1,4 @@
-.PHONY: all clean init test formatting
+.PHONY: all clean init test formatting docs
 
 init:
 	poetry install
@@ -8,3 +8,6 @@ test:
 
 formatting:
 	poetry run tox -e formatting
+
+docs:
+	poetry run make -C docs/ html

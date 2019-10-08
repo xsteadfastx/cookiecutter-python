@@ -32,6 +32,8 @@ DEV_DEPS = [
     "pytest",
     "pytest-cov",
     "tox",
+    "sphinx",
+    "sphinx-rtd-theme",
 ]
 
 RETURN_CODES.append(subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS).returncode)

@@ -11,6 +11,7 @@ cook_testing:
 	cookiecutter --no-input -o $(TMPDIR) .
 	make -C $(TMPDIR)/my_python_project init
 	make -C $(TMPDIR)/my_python_project test
+	make -C $(TMPDIR)/my_python_project docs
 	rm -rf $(TMPDIR)
 
 cook_rm_tempdir:
