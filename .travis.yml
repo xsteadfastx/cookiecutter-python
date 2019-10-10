@@ -9,7 +9,6 @@ env:
   - TOXENV=black-only-check
   - TOXENV=cookiecutter
 before_install:
-  - docker rmi xsteadfastx/tox-python:minimal
   - docker pull xsteadfastx/tox-python:minimal
 script:
   - sudo chown -R 1000:1000 .

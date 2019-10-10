@@ -7,6 +7,7 @@ copyright = "{% now 'utc', '%Y' %}, {{ cookiecutter.author_name }}"
 author = "{{ cookiecutter.author_name }}"
 release = "{{ cookiecutter.version }}"
 extensions = [
+    "m2r",
     "sphinx.ext.autodoc",
     "sphinx.ext.coverage",
     "sphinx.ext.napoleon",

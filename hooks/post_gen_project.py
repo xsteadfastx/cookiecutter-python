@@ -23,17 +23,18 @@ DEPS = ["click"]
 RETURN_CODES.append(subprocess.run(["poetry", "add"] + DEPS).returncode)
 
 DEV_DEPS = [
-    "black==18.9b0",
+    "black==19.3b0",
     "codecov",
     "flake8",
     "isort",
+    "m2r",
     "mypy",
     "pylint",
     "pytest",
     "pytest-cov",
-    "tox",
     "sphinx",
     "sphinx-rtd-theme",
+    "tox",
 ]
 
 RETURN_CODES.append(subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS).returncode)

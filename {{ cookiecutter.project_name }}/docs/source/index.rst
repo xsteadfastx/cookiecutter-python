@@ -1,16 +1,11 @@
 {{ cookiecutter.project_name }}
 {% for char in range(cookiecutter.project_name|length) %}={% endfor %}
 
+{{ cookiecutter.project_short_description }}
 
-{{ cookiecutter.project_name}}.cli
-{% for char in range(cookiecutter.project_name|length) %}-{% endfor %}----
-.. automodule:: {{ cookiecutter.project_name }}.cli
-   :members:
+.. mdinclude:: ../../CHANGELOG.md
 
-{{ cookiecutter.project_name}}.core
-{% for char in range(cookiecutter.project_name|length) %}-{% endfor %}-----
-.. automodule:: {{ cookiecutter.project_name }}.core
-   :members:
+.. include:: modules.rst
 
 .. toctree::
    :maxdepth: 2
