@@ -12,4 +12,4 @@ before_install:
   - docker pull xsteadfastx/tox-python:minimal
 script:
   - sudo chown -R 1000:1000 .
-  - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp xsteadfastx/tox-python:minimal /bin/sh -c "sudo apk add --no-cache git make; tox -v -e $TOXENV"
+  - docker run --rm -t -v $PWD:/data -w /data -e TOX_WORK_DIR=/tmp xsteadfastx/tox-python:minimal /bin/sh -c "sudo apk add --no-cache git make musl-dev gcc; tox -v -e $TOXENV"
