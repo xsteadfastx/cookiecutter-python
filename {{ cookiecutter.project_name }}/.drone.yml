@@ -53,3 +53,10 @@ steps:
     commands:
       - sudo apk add --no-cache gcc musl-dev
       - tox -v -e black-only-check
+
+  - name: docs
+    image: xsteadfastx/tox-python:minimal
+    pull: true
+    commands:
+      - sudo apk add --no-cache gcc make musl-dev
+      - make docs
