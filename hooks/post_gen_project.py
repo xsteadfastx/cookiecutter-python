@@ -1,6 +1,7 @@
 """Post project creation hook."""
 import subprocess
 import sys
+from distutils.version import StrictVersion
 
 RETURN_CODES = []
 
@@ -23,7 +24,6 @@ DEPS = ["click"]
 RETURN_CODES.append(subprocess.run(["poetry", "add"] + DEPS).returncode)
 
 DEV_DEPS = [
-    "black==19.3b0",
     "codecov",
     "flake8",
     "isort",
@@ -38,6 +38,12 @@ DEV_DEPS = [
 ]
 
 RETURN_CODES.append(subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS).returncode)
+
+if StrictVersion("{{ cookiecutter.python_version }}") >= StrictVersion("3.6"):
+    RETURN_CODES.append(
+        subprocess.run(["poetry", "add", "--dev", "black==19.3b0"]).returncode
+    )
+
 
 if any(RETURN_CODES):
     sys.exit(1)
