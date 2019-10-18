@@ -6,7 +6,7 @@ authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^{{ cookiecutter.python_version }}"
+python = "^{{ ".".join(cookiecutter.python_version.split(".")[:2]) }}"
 
 [tool.poetry.scripts]
 {{ cookiecutter.project_name }} = "{{ cookiecutter.project_name }}.cli:main"
