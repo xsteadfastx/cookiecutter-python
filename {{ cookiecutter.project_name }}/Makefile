@@ -1,4 +1,4 @@
-.PHONY: all clean init test formatting docs
+.PHONY: all clean init test formatting docs shiv
 
 init:
 	poetry install
@@ -10,5 +10,8 @@ formatting:
 	poetry run tox -e formatting
 
 docs:
-	poetry run sphinx-apidoc -f -M -o docs/source/ src/
-	poetry run make -C docs/ html
+	poetry run tox -e docs
+
+shiv:
+	mkdir -p dist/
+	poetry run tox -e shiv

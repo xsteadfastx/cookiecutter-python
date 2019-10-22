@@ -1,4 +1,5 @@
 """Post project creation hook."""
+import os
 import subprocess
 import sys
 from distutils.version import StrictVersion
@@ -27,13 +28,10 @@ DEV_DEPS = [
     "codecov",
     "flake8",
     "isort",
-    "m2r",
     "mypy",
     "pylint",
     "pytest",
     "pytest-cov",
-    "sphinx",
-    "sphinx-rtd-theme",
     "tox",
 ]
 
@@ -44,6 +42,9 @@ if StrictVersion("{{ cookiecutter.python_version }}") >= StrictVersion("3.6"):
         subprocess.run(["poetry", "add", "--dev", "black==19.3b0"]).returncode
     )
 
+os.remove(".python-version")
+if os.path.exists(".python-version"):
+    sys.exit(1)
 
 if any(RETURN_CODES):
     sys.exit(1)
