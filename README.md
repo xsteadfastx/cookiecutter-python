@@ -9,10 +9,11 @@ An easy start to get a Python project up and running. Things covered:
 - [x] Pipfile
 - [x] black
 - [x] drone
+- [x] drone
 - [x] flake8
 - [x] mypy
 - [x] pylint
 - [x] pytest
-- [x] travis
-- [x] drone
+- [x] shiv
 - [x] sphinx docs
+- [x] travis
