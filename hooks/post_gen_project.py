@@ -34,6 +34,7 @@ if StrictVersion("{{ cookiecutter.python_version }}") >= StrictVersion("3.6"):
     subprocess.run(["poetry", "add", "--dev", "black==19.3b0"], check=True)
 
 # remove .python-version file
-os.remove(".python-version")
+if os.path.exists(".python-version"):
+    os.remove(".python-version")
 if os.path.exists(".python-version"):
     sys.exit(1)
