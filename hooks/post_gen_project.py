@@ -4,26 +4,19 @@ import subprocess
 import sys
 from distutils.version import StrictVersion
 
-RETURN_CODES = []
-
 # init git
-RETURN_CODES.append(subprocess.run(["git", "init"]).returncode)
-RETURN_CODES.append(
-    subprocess.run(
-        ["git", "config", "--add", "user.name", "{{ cookiecutter.author_name }}"]
-    ).returncode
+subprocess.run(["git", "init"], check=True)
+subprocess.run(
+    ["git", "config", "--add", "user.name", "{{ cookiecutter.author_name }}"],
+    check=True,
 )
-RETURN_CODES.append(
-    subprocess.run(
-        ["git", "config", "--add", "user.email", "{{ cookiecutter.author_email }}"]
-    ).returncode
+subprocess.run(
+    ["git", "config", "--add", "user.email", "{{ cookiecutter.author_email }}"],
+    check=True,
 )
 
 # install deps through poetry
 DEPS = ["click"]
-
-RETURN_CODES.append(subprocess.run(["poetry", "add"] + DEPS).returncode)
-
 DEV_DEPS = [
     "codecov",
     "flake8",
@@ -35,16 +28,12 @@ DEV_DEPS = [
     "tox",
 ]
 
-RETURN_CODES.append(subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS).returncode)
-
+subprocess.run(["poetry", "add"] + DEPS, check=True)
+subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS, check=True)
 if StrictVersion("{{ cookiecutter.python_version }}") >= StrictVersion("3.6"):
-    RETURN_CODES.append(
-        subprocess.run(["poetry", "add", "--dev", "black==19.3b0"]).returncode
-    )
+    subprocess.run(["poetry", "add", "--dev", "black==19.3b0"], check=True)
 
+# remove .python-version file
 os.remove(".python-version")
 if os.path.exists(".python-version"):
-    sys.exit(1)
-
-if any(RETURN_CODES):
     sys.exit(1)
