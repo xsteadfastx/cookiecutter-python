@@ -31,7 +31,7 @@ DEV_DEPS = [
 subprocess.run(["poetry", "add"] + DEPS, check=True)
 subprocess.run(["poetry", "add", "--dev"] + DEV_DEPS, check=True)
 if StrictVersion("{{ cookiecutter.python_version }}") >= StrictVersion("3.6"):
-    subprocess.run(["poetry", "add", "--dev", "black==19.3b0"], check=True)
+    subprocess.run(["poetry", "add", "--dev", "black==19.10b0"], check=True)
 
 # remove .python-version file
 if os.path.exists(".python-version"):
