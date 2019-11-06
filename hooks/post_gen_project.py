@@ -20,6 +20,7 @@ DEPS = ["click"]
 DEV_DEPS = [
     "codecov",
     "flake8",
+    "flake8-bugbear",
     "isort",
     "mypy",
     "pylint",
