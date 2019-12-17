@@ -20,7 +20,8 @@ def test_tox(created_project):
 
     assert "poetry run pytest --cov=my_python_project" in tox_ini
     assert "poetry run codecov" in tox_ini
-    assert "poetry run flake8 {toxinidir}/src/my_python_project/" in tox_ini
+    assert "poetry run bandit" in tox_ini
+    assert "poetry run prospector" in tox_ini
 
 
 def test_hook_git(created_project):
@@ -36,8 +37,8 @@ def test_travis(created_project):
         travis_yml = f.read()
 
     assert "TOXENV=py37" in travis_yml
-    assert "TOXENV=flake8" in travis_yml
-    assert "TOXENV=pylint" in travis_yml
+    assert "TOXENV=prospector" in travis_yml
+    assert "TOXENV=bandit" in travis_yml
     assert "TOXENV=mypy" in travis_yml
     assert "TOXENV=black-only-check" in travis_yml
     assert "docker run --rm -t" in travis_yml

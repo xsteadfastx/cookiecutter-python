@@ -5,14 +5,12 @@
 An easy start to get a Python project up and running. Things covered:
 
 - [x] Dockerfile
-- [x] Jenkinsfile
-- [x] Pipfile
+- [x] bandit
 - [x] black
 - [x] bumpversion
 - [x] drone
-- [x] flake8
 - [x] mypy
-- [x] pylint
+- [x] prospector
 - [x] pytest
 - [x] shiv
 - [x] sphinx docs

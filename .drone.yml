@@ -12,21 +12,21 @@ steps:
       - sudo apk add --no-cache gcc musl-dev
       - tox -e py37
 
-  - name: flake8
+  - name: bandit
     image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
       - sudo apk add --no-cache gcc musl-dev
-      - tox -e flake8
+      - tox -e bandit
 
-  - name: pylint
+  - name: prospector
     image: xsteadfastx/tox-python:minimal
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
       - sudo apk add --no-cache gcc musl-dev
-      - tox -e pylint
+      - tox -e prospector
 
   - name: black
     image: xsteadfastx/tox-python:minimal
@@ -41,5 +41,5 @@ steps:
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
-      - sudo apk add --no-cache git gcc make musl-dev
+      - sudo apk add --no-cache git gcc make musl-dev libffi-dev openssl-dev
       - tox -e cookiecutter

@@ -18,12 +18,11 @@ subprocess.run(
 # install deps through poetry
 DEPS = ["click"]
 DEV_DEPS = [
+    "bandit",
     "codecov",
-    "flake8",
-    "flake8-bugbear",
     "isort",
     "mypy",
-    "pylint",
+    "prospector",
     "pytest",
     "pytest-cov",
     "tox",

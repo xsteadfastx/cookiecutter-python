@@ -4,8 +4,8 @@ services:
   - docker
 env:
   - TOXENV=py{{ cookiecutter.python_version|replace(".", "") }}
-  - TOXENV=flake8
-  - TOXENV=pylint
+  - TOXENV=bandit
+  - TOXENV=prospector
   - TOXENV=mypy
   - TOXENV=black-only-check
 script:

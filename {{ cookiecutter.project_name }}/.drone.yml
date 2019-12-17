@@ -18,23 +18,23 @@ steps:
       - sudo apk add --no-cache gcc musl-dev
       - tox -v -e py{{ ".".join(cookiecutter.python_version.split(".")[:2])|replace(".", "") }}
 
-  - name: flake8
+  - name: bandit
     image: xsteadfastx/tox-python:minimal
     pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
       - sudo apk add --no-cache gcc musl-dev
-      - tox -v -e flake8
+      - tox -v -e bandit
 
-  - name: pylint
+  - name: prospector
     image: xsteadfastx/tox-python:minimal
     pull: true
     environment:
       TOX_WORK_DIR: /tmp/tox
     commands:
       - sudo apk add --no-cache gcc musl-dev
-      - tox -v -e pylint
+      - tox -v -e prospector
 
   - name: mypy
     image: xsteadfastx/tox-python:minimal
